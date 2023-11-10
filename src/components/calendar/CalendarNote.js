@@ -3,17 +3,20 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import axios from "axios";
+import { Button, Modal } from 'react-bootstrap';
 
 const localizer = momentLocalizer(moment);
 function CalendarNote() {
   const [events, setEvents] = useState([]);
-  const [date, setDate] = useState(null);
-  const [year, setYear] = useState(null);
-  const [month, setMonth] = useState(null);
-  const [day, setDay] = useState(null);
-  const [hours, setHours] = useState(null);
-  const [minutes, setMinutes] = useState(null);
   const [eventsArr, setEventsArr] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [description, setDescription] = useState('');
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  const htmlContent = '<p>This is some <strong>HTML</strong> content.</p>';
+
+
 
   useEffect(() => {
     // You can fetch events from an API or another data source here.
@@ -35,8 +38,11 @@ function CalendarNote() {
                 " " +
                 item.customer.lastName +
                 " " +
-                item.service.serviceName,
-              notes: `Barber: ${item.barber.firstName} ${item.barber.lastName}\nCliente: ${item.customer.firstName} ${item.customer.lastName}\nServicio: ${item.service.description}`,
+                item.service.serviceName +
+                " - " +
+                item.barber.firstName + " " + item.barber.lastName,
+              notes: `<b>Barber:</b> ${item.barber.firstName} ${item.barber.lastName}<br/><b>Cliente: </b> ${item.customer.firstName} ${item.customer.lastName}<br/><b>Servicio: </b> ${item.service.description}
+              <br/><b>Fecha: </b> ${item.appointmentDateTime}`,
             };
           });
 
@@ -50,33 +56,9 @@ function CalendarNote() {
     // For this example, we'll use a sample event.
   }, [events, eventsArr]);
 
-  function setEventsArray(
-    year,
-    mont,
-    day,
-    hour,
-    min,
-    service,
-    description,
-    barber,
-    customer
-  ) {
-    const descriptionServie =
-      "Barber: " +
-      barber +
-      "\n" +
-      "Cliente: " +
-      customer +
-      "\n" +
-      "Servicio: " +
-      description;
-    const sampleEvent = {
-      start: new Date(year, mont, day, hour, min),
-      end: new Date(year, mont, day, hour + 1, min),
-      title: service,
-      notes: descriptionServie,
-    };
-    setEventsArr((prevData) => [...prevData, sampleEvent]);
+  function onCLickDate(event) {
+    setDescription(event.notes);
+    setShowModal(true);
   }
 
   return (
@@ -88,10 +70,22 @@ function CalendarNote() {
         endAccessor="end"
         style={{ height: 500 }}
         onSelectEvent={(event) => {
-          // You can display the notes when an event is clicked here.
-          alert(`Notes: ${event.notes}`);
+          onCLickDate(event)
         }}
       />
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Servicio</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseModal}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
