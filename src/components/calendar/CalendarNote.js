@@ -69,7 +69,7 @@ function CalendarNote() {
     }
     // You can fetch events from an API or another data source here.
     axios
-      .get("https://sea-turtle-app-ocnii.ondigitalocean.app/appointments")
+      .get("https://dolphin-app-95jtj.ondigitalocean.app/appointments")
       .then((response) => {
         const responseData = response.data;
         if (Array.isArray(responseData)) {
@@ -117,7 +117,7 @@ function CalendarNote() {
   }
 
   function getBarbers() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/barbers")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/barbers")
       .then((response) => {
         const data = response.data;
         const newArray = [];
@@ -134,7 +134,7 @@ function CalendarNote() {
   }
 
   function getServices() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/services")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/services")
       .then((response) => {
         const data = response.data;
         const newArray = [];
@@ -151,7 +151,7 @@ function CalendarNote() {
   }
 
   function getCustomers() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/customers")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/customers")
       .then((response) => {
         const data = response.data;
         const newArray = [];
@@ -193,7 +193,7 @@ function CalendarNote() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    axios.post("https://sea-turtle-app-ocnii.ondigitalocean.app/customer", formClient)
+    axios.post("https://dolphin-app-95jtj.ondigitalocean.app/customer", formClient)
       .then((respone) => {
         setShowModalCustomer(false);
         getCustomers();
@@ -221,7 +221,7 @@ function CalendarNote() {
 
     e.preventDefault();
     // Handle form submission logic here
-    axios.post("https://sea-turtle-app-ocnii.ondigitalocean.app/appointment", body)
+    axios.post("https://dolphin-app-95jtj.ondigitalocean.app/appointment", body)
       .then((respone) => {
         setShowModalAppointment(false);
         getBarbers();

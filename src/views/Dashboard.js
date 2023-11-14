@@ -46,21 +46,21 @@ function Dashboard() {
   })
 
   function getAppointments() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/appointments")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/appointments")
       .then((response) => {
         setCountAppointment(response.data.length);
       })
   }
 
   function getBarbers() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/barbers")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/barbers")
       .then((response) => {
         setBarbers(response.data.length);
       })
   }
 
   function getCustomers() {
-    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/customers")
+    axios.get("https://dolphin-app-95jtj.ondigitalocean.app/customers")
       .then((response) => {
         setCountCustomer(response.data.length);
       })

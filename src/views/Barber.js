@@ -68,7 +68,7 @@ export default function Barber() {
             message = 'Se actualizaron datos de barbero';
         }
         // Handle form submission logic here
-        axios.post("https://sea-turtle-app-ocnii.ondigitalocean.app/barber", formBarber)
+        axios.post("https://dolphin-app-95jtj.ondigitalocean.app/barber", formBarber)
             .then(() => {
                 setShowModalBarber(false);
                 handleShowNotification(message, 'success');
@@ -82,7 +82,7 @@ export default function Barber() {
     };
 
     function getBarbers() {
-        axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/barbers")
+        axios.get("https://dolphin-app-95jtj.ondigitalocean.app/barbers")
             .then((response) => {
                 setBarbers(response.data);
             })
@@ -109,7 +109,7 @@ export default function Barber() {
     };
 
     const handleDeleteBarber = () => {
-        axios.delete("https://sea-turtle-app-ocnii.ondigitalocean.app/barber/" + id)
+        axios.delete("https://dolphin-app-95jtj.ondigitalocean.app/barber/" + id)
             .then(() => {
                 setShowModal(false);
                 getBarbers();

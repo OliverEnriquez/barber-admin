@@ -70,7 +70,7 @@ export default function Customer() {
             message = 'Se actualizaron datos de cliente';
         }
         // Handle form submission logic here
-        axios.post("https://sea-turtle-app-ocnii.ondigitalocean.app/customer", formClient)
+        axios.post("https://dolphin-app-95jtj.ondigitalocean.app/customer", formClient)
             .then(() => {
                 setShowModalCustomer(false);
                 handleShowNotification(message, 'success');
@@ -83,7 +83,7 @@ export default function Customer() {
     };
 
     function getCustomers() {
-        axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/customers")
+        axios.get("https://dolphin-app-95jtj.ondigitalocean.app/customers")
             .then((response) => {
                 setCustomers(response.data);
             })
@@ -110,7 +110,7 @@ export default function Customer() {
     };
 
     const handleDeleteCustomer = () => {
-        axios.delete("https://sea-turtle-app-ocnii.ondigitalocean.app/customer/" + id)
+        axios.delete("https://dolphin-app-95jtj.ondigitalocean.app/customer/" + id)
             .then(() => {
                 setShowModal(false);
                 getCustomers();
