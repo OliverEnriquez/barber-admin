@@ -16,64 +16,47 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import Barber from "views/Barber";
+import Customer from "views/Customer";
 import Dashboard from "views/Dashboard.js";
-import Notifications from "views/Notifications.js";
-import Icons from "views/Icons.js";
-import Typography from "views/Typography.js";
-import TableList from "views/Tables.js";
-import Maps from "views/Map.js";
-import UserPage from "views/User.js";
-import UpgradeToPro from "views/Upgrade.js";
+import Payment from "views/Payment";
+import Service from "views/Service";
 
 var routes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Home",
     icon: "nc-icon nc-bank",
     component: <Dashboard />,
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "nc-icon nc-diamond",
-    component: <Icons />,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "nc-icon nc-pin-3",
-    component: <Maps />,
-    layout: "/admin",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
-    component: <Notifications />,
-    layout: "/admin",
-  },
-  {
-    path: "/user-page",
-    name: "User Profile",
+    path: "/customer",
+    name: "Clientes",
     icon: "nc-icon nc-single-02",
-    component: <UserPage />,
+    component: <Customer />,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: <TableList />,
+    path: "/barber",
+    name: "Barberos",
+    icon: "nc-icon nc-scissors",
+    component: <Barber />,
     layout: "/admin",
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: "nc-icon nc-caps-small",
-    component: <Typography />,
+    path: "/service",
+    name: "Servicios",
+    icon: "nc-icon nc-bullet-list-67",
+    component: <Service />,
     layout: "/admin",
   },
+  {
+    path: "/payment",
+    name: "Pagos",
+    icon: "nc-icon nc-credit-card",
+    component: <Payment />,
+    layout: "/admin",
+  }
 ];
 export default routes;

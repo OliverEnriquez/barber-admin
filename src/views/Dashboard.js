@@ -16,28 +16,55 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import axios from "axios";
 import Calendar from "components/calendar/CalendarNote";
-import React from "react";
+import { useEffect, useState } from "react";
 // react plugin used to create charts
-import { Line, Pie } from "react-chartjs-2";
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
+  CardHeader,
   CardTitle,
-  Row,
   Col,
+  Row,
 } from "reactstrap";
 // core components
-import {
-  dashboard24HoursPerformanceChart,
-  dashboardEmailStatisticsChart,
-  dashboardNASDAQChart,
-} from "variables/charts.js";
 
 function Dashboard() {
+
+  const [countAppointment, setCountAppointment] = useState(0);
+  const [countCustomers, setCountCustomer] = useState(0);
+  const [countBarbers, setBarbers] = useState(0);
+
+  useEffect(() => {
+    getAppointments();
+    getCustomers();
+    getBarbers();
+
+  })
+
+  function getAppointments() {
+    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/appointments")
+      .then((response) => {
+        setCountAppointment(response.data.length);
+      })
+  }
+
+  function getBarbers() {
+    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/barbers")
+      .then((response) => {
+        setBarbers(response.data.length);
+      })
+  }
+
+  function getCustomers() {
+    axios.get("https://sea-turtle-app-ocnii.ondigitalocean.app/customers")
+      .then((response) => {
+        setCountCustomer(response.data.length);
+      })
+  }
   return (
     <>
       <div className="content">
@@ -48,13 +75,13 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-globe text-warning" />
+                      <i className="nc-icon nc-calendar-60 text-warning" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
-                      <p className="card-category">Capacity</p>
-                      <CardTitle tag="p">150GB</CardTitle>
+                      <p className="card-category">Citas</p>
+                      <CardTitle tag="p">{countAppointment}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -63,7 +90,7 @@ function Dashboard() {
               <CardFooter>
                 <hr />
                 <div className="stats">
-                  <i className="fas fa-sync-alt" /> Update Now
+                  {/* <i className="fas fa-sync-alt" /> Update Now */}
                 </div>
               </CardFooter>
             </Card>
@@ -74,13 +101,13 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-money-coins text-success" />
+                      <i className="nc-icon nc-single-02 text-success" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
-                      <p className="card-category">Revenue</p>
-                      <CardTitle tag="p">$ 1,345</CardTitle>
+                      <p className="card-category">Clientes</p>
+                      <CardTitle tag="p">{countCustomers}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -89,7 +116,7 @@ function Dashboard() {
               <CardFooter>
                 <hr />
                 <div className="stats">
-                  <i className="far fa-calendar" /> Last day
+                  {/* <i className="far fa-calendar" /> Last day */}
                 </div>
               </CardFooter>
             </Card>
@@ -100,13 +127,13 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-vector text-danger" />
+                      <i className="nc-icon nc-scissors text-danger" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
-                      <p className="card-category">Errors</p>
-                      <CardTitle tag="p">23</CardTitle>
+                      <p className="card-category">Barberos</p>
+                      <CardTitle tag="p">{countBarbers}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -115,7 +142,7 @@ function Dashboard() {
               <CardFooter>
                 <hr />
                 <div className="stats">
-                  <i className="far fa-clock" /> In the last hour
+                  {/* <i className="far fa-clock" /> In the last hour */}
                 </div>
               </CardFooter>
             </Card>
@@ -145,7 +172,7 @@ function Dashboard() {
           <Col md="12">
             <Card>
               <CardHeader>
-                <CardTitle tag="h5">calendario</CardTitle>
+                <CardTitle tag="h5">Calendario</CardTitle>
               </CardHeader>
               <CardBody>
                 <Calendar />
@@ -153,7 +180,7 @@ function Dashboard() {
               <CardFooter>
                 <hr />
                 <div className="stats">
-                  <i className="fa fa-history" /> Updated 3 minutes ago
+
                 </div>
               </CardFooter>
             </Card>

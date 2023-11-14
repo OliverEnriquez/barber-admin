@@ -26,7 +26,7 @@ function Footer(props) {
   return (
     <footer className={"footer" + (props.default ? " footer-default" : "")}>
       <Container fluid={props.fluid ? true : false}>
-        <Row>
+        {/* <Row>
           <nav className="footer-nav">
             <ul>
               <li>
@@ -52,7 +52,7 @@ function Footer(props) {
               <i className="fa fa-heart heart" /> by Creative Tim
             </div>
           </div>
-        </Row>
+        </Row> */}
       </Container>
     </footer>
   );
